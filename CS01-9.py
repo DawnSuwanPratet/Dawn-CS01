@@ -1,8 +1,4 @@
-A = int(input("Enter your first number: "))
-B = int(input("Enter your second number: "))
-C = int(input("Enter your third number: "))
+Name = ["D", "A", "W", "N", "", "S", "U", "W", "A", "N", "P", "R", "A", "T", "E", "T"]
 
-if B < A < C:
-    print("The condiction is True")
-else:
-    print("The condiction is False")
+for s in Name:
+    print(s)
