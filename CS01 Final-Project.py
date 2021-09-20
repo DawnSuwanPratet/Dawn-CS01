@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.font import BOLD
 
 root = Tk()
+root.configure(background = "light grey")
 root.title("pyCalc")
 
 e = Entry(root, width = 50, borderwidth = 5)
@@ -10,62 +11,76 @@ e.insert(0, "0")
 
 def button_click(number):
     current = e.get()
+    global s_num
+
     if current == "0":
         e.delete(0, END)
         e.insert(0, str(current) + str(number))
         e.delete(0, 1)
+        new_current = e.get()
+        s_num = int(new_current)
     else:
         e.delete(0, END)
         e.insert(0, str(current) + str(number))
+        new_current = e.get()
+        s_num = int(new_current)
 
 def clear():
     e.delete(0, END)
+    e.insert(0, "0")
 
 def add():
     first_number = e.get()
+    global data
     global f_num
     global math
     math = "addition"
     f_num = int(first_number)
+    data = []
     e.delete(0, END)
 
 def subtract():
     first_number = e.get()
+    global data
     global f_num
     global math
     math = "subtraction"
     f_num = int(first_number)
+    data = []
     e.delete(0, END)
 
 def multiply():
     first_number = e.get()
+    global data
     global f_num
     global math
     math = "multiplication"
     f_num = int(first_number)
+    data = []
     e.delete(0, END)
 
 def divide():
     first_number = e.get()
+    global data
     global f_num
     global math
     math = "division"
     f_num = int(first_number)
+    data = []
     e.delete(0, END)
 
 def equal():
-    first_number = f_num
-    second_number = e.get()
+    data.append(s_num)
     e.delete(0, END)
 
     if math == "addition":
-        e.insert(0, first_number + int(second_number))
+        e.insert(0, f_num + data[0])
     if math == "subtraction":
-        e.insert(0, first_number - int(second_number))
+        e.insert(0, f_num - data[0])
     if math == "multiplication":
-        e.insert(0, first_number * int(second_number))
+        e.insert(0, f_num * data[0])
     if math == "division":
-        e.insert(0, first_number / int(second_number))
+        e.insert(0, f_num / data[0])
 
 button_1 = Button(root, text = "1", padx = 60, pady = 15, bg = "light grey", font = ("", 15), command = lambda: button_click(1))
 button_2 = Button(root, text = "2", padx = 60, pady = 15, bg = "light grey", font = ("", 15), command = lambda: button_click(2))
